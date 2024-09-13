@@ -1,7 +1,6 @@
 import psycopg2
 from psycopg2 import sql
 
-# Подключение к базе данных
 def create_connection():
     conn = psycopg2.connect(
         host="postgres",
@@ -11,7 +10,6 @@ def create_connection():
     )
     return conn
 
-# Создание таблицы
 def create_table(conn):
     query = '''
     CREATE TABLE IF NOT EXISTS employees (
@@ -25,7 +23,6 @@ def create_table(conn):
         cursor.execute(query)
         conn.commit()
 
-# Наполнение таблицы данными
 def fill_table(conn):
     query = '''
     INSERT INTO employees (ID, Name, Age, Department) VALUES
@@ -40,7 +37,6 @@ def fill_table(conn):
         cursor.executemany(query, data)
         conn.commit()
 
-# Вывод данных из таблицы
 def fetch_data(conn):
     query = '''
     SELECT * FROM employees;
